@@ -1,0 +1,3 @@
+2026-04-14 10:18:51 -module1 - DEBUG - this is a debug message for  moudle1
+2026-04-14 10:18:51 -module2 - WARNING - this is a warning message for logger2  or moudle 2
+2026-04-14 10:18:51 -module2 - ERROR - this is a error message for module 2
