@@ -5,6 +5,7 @@
 import logging
 import sys
 import warnings
+from pathlib import Path
 from urllib.parse import urlparse
 
 import numpy as np
@@ -32,6 +33,12 @@ if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
 
+    tracking_dir = Path.cwd() / "mlruns"
+    tracking_dir.mkdir(exist_ok=True)
+    sqlite_uri = f"sqlite:///{(Path.cwd() / 'mlflow.db').resolve()}"
+    mlflow.set_tracking_uri(sqlite_uri)
+    mlflow.set_experiment("wine-quality")
+
     # Read the wine-quality csv file from the URL
     csv_url = (
         "https://raw.githubusercontent.com/mlflow/mlflow/master/tests/datasets/winequality-red.csv"
@@ -42,9 +49,13 @@ if __name__ == "__main__":
         logger.exception(
             "Unable to download training & test CSV, check your internet connection. Error: %s", e
         )
+        raise
+
+    if "quality" not in data.columns:
+        raise ValueError("The CSV does not contain the expected 'quality' column.")
 
     # Split the data into training and test sets. (0.75, 0.25) split.
-    train, test = train_test_split(data)
+    train, test = train_test_split(data, test_size=0.25, random_state=42)
 
     # The predicted column is "quality" which is a scalar from [3, 9]
     train_x = train.drop(["quality"], axis=1)
@@ -86,7 +97,10 @@ if __name__ == "__main__":
             # please refer to the doc for more information:
             # https://mlflow.org/docs/latest/model-registry.html#api-workflow
             mlflow.sklearn.log_model(
-                lr, name="model", registered_model_name="ElasticnetWineModel", signature=signature
+                lr,
+                artifact_path="model",
+                registered_model_name="ElasticnetWineModel",
+                signature=signature,
             )
         else:
-            mlflow.sklearn.log_model(lr, name="model", signature=signature)
+            mlflow.sklearn.log_model(lr, artifact_path="model", signature=signature)
