@@ -1,0 +1,14 @@
+service: "service.py:svc"
+name: iris-classifier
+
+labels:
+  owner: bentoml-team
+  project: gallery
+
+include:
+  - "*.py"
+
+python:
+  packages:
+    - scikit-learn
+    - pandas
