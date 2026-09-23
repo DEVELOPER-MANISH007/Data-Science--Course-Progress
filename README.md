@@ -92,7 +92,7 @@ These notebooks cover:
 - Pattern discovery
 - Feature selection and preparation for modeling
 
-### 9. Machine Learning Foundations
+### 9.   Machine Learning Foundations
 Folder: [10.Into to macchine learning](10.Into%20to%20macchine%20learning)
 
 This section introduces the core concepts of machine learning and the transition from data analysis to modeling.
@@ -102,7 +102,7 @@ Folder: [11.Understand complete linear Regression Indepth Intution And Pracctica
 
 Includes practical regression notebooks and related materials.
 
-### 11. Regularization Techniques
+### 11.   Regularization Techniques
 Folder: [12.Section 28 Ridge, Lasso And ElasticNet ML](12.Section%2028%20Ridge,%20Lasso%20And%20ElasticNet%20ML)
 
 Focuses on:
@@ -175,7 +175,7 @@ cd "05.stremlit"
 streamlit run app.py
 ```
 
-Or:
+OR:
 
 ```bash
 cd "05.stremlit"
@@ -185,7 +185,7 @@ streamlit run classification.py
 ### Jupyter Notebooks
 Most of the learning material is stored in notebooks inside the course folders. These can be opened in Jupyter Notebook or JupyterLab.
 
----
+----
 
 ## Tools and Libraries Used
 
@@ -194,7 +194,7 @@ The notebooks and scripts mainly use:
 - pandas
 - numpy
 - seaborn
-- scikit-learn
+- scikit-Learn
 - Flask
 - Streamlit
 - Jupyter Notebook
